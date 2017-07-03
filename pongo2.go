@@ -108,10 +108,10 @@ func Pongo2() echo.MiddlewareFunc {
 				var template = pongo2.Must(pongo2.FromFile(path.Join("templates", templateNameValue)))
 				ctx.Response().Header().Set(ContentType, newContentType)
 				err = template.ExecuteWriter(
-					getContext(templateData), ctx.Response().Writer())
+					getContext(templateData), ctx.Response().Writer)
 				if err != nil {
 					http.Error(
-						ctx.Response().Writer(), err.Error(), 500)
+						ctx.Response().Writer, err.Error(), 500)
 				}
 			}
 			return nil
