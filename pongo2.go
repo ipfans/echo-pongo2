@@ -69,7 +69,7 @@ func getContext(templateData interface{}) pongo2.Context {
 
 func Pongo2() echo.MiddlewareFunc {
 	return func(h echo.HandlerFunc) echo.HandlerFunc {
-		return func(ctx *echo.Context) error {
+		return func(ctx echo.Context) error {
 			err := h(ctx)
 			if err != nil {
 				return err
@@ -77,7 +77,7 @@ func Pongo2() echo.MiddlewareFunc {
 			templateName := ctx.Get("template")
 			if templateName == nil {
 				http.Error(
-					ctx.Response().Writer(),
+					ctx.Response().Writer,
 					"Template in Context not defined.",
 					500)
 			}
@@ -108,10 +108,10 @@ func Pongo2() echo.MiddlewareFunc {
 				var template = pongo2.Must(pongo2.FromFile(path.Join("templates", templateNameValue)))
 				ctx.Response().Header().Set(ContentType, newContentType)
 				err = template.ExecuteWriter(
-					getContext(templateData), ctx.Response().Writer())
+					getContext(templateData), ctx.Response().Writer)
 				if err != nil {
 					http.Error(
-						ctx.Response().Writer(), err.Error(), 500)
+						ctx.Response().Writer, err.Error(), 500)
 				}
 			}
 			return nil
