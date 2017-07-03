@@ -69,7 +69,7 @@ func getContext(templateData interface{}) pongo2.Context {
 
 func Pongo2() echo.MiddlewareFunc {
 	return func(h echo.HandlerFunc) echo.HandlerFunc {
-		return func(ctx *echo.Context) error {
+		return func(ctx echo.Context) error {
 			err := h(ctx)
 			if err != nil {
 				return err
