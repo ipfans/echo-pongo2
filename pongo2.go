@@ -77,7 +77,7 @@ func Pongo2() echo.MiddlewareFunc {
 			templateName := ctx.Get("template")
 			if templateName == nil {
 				http.Error(
-					ctx.Response().Writer(),
+					ctx.Response().Writer,
 					"Template in Context not defined.",
 					500)
 			}
